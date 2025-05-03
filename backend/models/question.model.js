@@ -2,12 +2,11 @@ import mongoose from 'mongoose';
 
 const questionSchema = new mongoose.Schema({
     examId: { type: mongoose.Schema.Types.ObjectId, ref: 'Exam', required: true },
-    questionText: { type: String, required: true },
-    options: [{ type: String, required: true }], // array of options
+    question: { type: String, required: true },
+    image: { type: String }, // optional image (URL or path)
+    options: [{ type: String, required: true }],
     correctAnswers: [{ type: Number, required: true }], // indexes of correct options
-    questionType: { type: String, enum: ['MCQ', 'MSQ'], required: true }, // MCQ = single, MSQ = multiple
-    marks: { type: Number, default: 1 },
-    negativeMarks: { type: Number, default: 0 },
+    type: { type: String, enum: ['MCQ', 'MSQ'], required: true }
 }, { timestamps: true });
 
 export default mongoose.model('Question', questionSchema);
