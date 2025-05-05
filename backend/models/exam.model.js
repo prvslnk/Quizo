@@ -24,7 +24,7 @@ const examSchema = new mongoose.Schema({
         required: true,
     },
     classFilter: {
-        type: String,
+        type: [String],
         enum: ['V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'],
         required: true,
     },
@@ -33,11 +33,12 @@ const examSchema = new mongoose.Schema({
         enum: ['Math', 'Science', 'English', 'History', 'Geography'],
         required: true,
     },
-    assignedto: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
+    assignedto: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        }
+    ],
     attendees: [
         {
             userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

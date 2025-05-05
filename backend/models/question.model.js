@@ -7,7 +7,8 @@ const questionSchema = new mongoose.Schema({
         required: true,
     },
     questionText: {
-        type: String
+        type: String,
+        required: true,
     },
     questionImage: {
         type: String,
@@ -15,21 +16,29 @@ const questionSchema = new mongoose.Schema({
     },
     questionType: {
         type: String,
-        enum: ['MCQ', 'MSQ'],
+        enum: ['mcq', 'msq'],
         required: true,
     },
-    options: [
-        {
-            optionText: {
-                type: String,
-                required: true,
+    options: {
+        type: [
+            {
+                optionText: {
+                    type: String,
+                    required: true,
+                },
+                isCorrect: {
+                    type: Boolean,
+                    default: false,
+                },
             },
-            isCorrect: {
-                type: Boolean,
-                default: false,
+        ],
+        validate: {
+            validator: function (v) {
+                return v.length >= 2 && v.length <= 4;
             },
+            message: 'Options should be between 2 and 4.',
         },
-    ],
+    },
     correctAnswers: [
         {
             type: String,
