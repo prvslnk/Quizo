@@ -11,7 +11,7 @@ router.put('/profile/:id', protect, adminOnly, uploadAvatar.single('avatar'), up
 router.delete('/profile/:id', protect, adminOnly, deleteUserByAdmin);
 
 // Self-updation
-router.put('/profile', protect, uploadAvatar.single('avatar'), updateUserProfile);
+router.put('/myprofile/:id', protect, uploadAvatar.single('avatar'), updateUserProfile);
 
 
 export default router;

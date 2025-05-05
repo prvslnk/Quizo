@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 // Function to generate JWT token
-const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '5d' });
 
 export const registerUser = async (req, res) => {
     try {
@@ -16,7 +16,7 @@ export const registerUser = async (req, res) => {
         }
 
         // Handle the profile picture upload
-        const avatar = req.file ? `/uploads/avatars/${req.file.filename}` : null;
+        const avatar = req.file ? `/uploads/avatars/${req.file.filename}` : '/uploads/avatars/user.png';
 
         // Hash the password before saving
         const salt = await bcrypt.genSalt(10);
@@ -42,6 +42,9 @@ export const registerUser = async (req, res) => {
             email: user.email,
             avatar: user.avatar,
             token: generateToken(user._id),
+            rollNo: user.rollNo,
+            standard: user.standard,
+            role: user.role,
         });
     } catch (error) {
         res.status(400).json({ message: error.message });

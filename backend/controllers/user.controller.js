@@ -80,33 +80,44 @@ export const deleteUserByAdmin = async (req, res) => {
     }
 };
 
-// User: Update own profile (name, email, avatar)
+
+// @desc    PUT Update own profile (name, email, avatar) through bearer token
+// @route   PUT /api/user/myprofile
+// @access  Private
+
 export const updateUserProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id);
+        const { name, email, password } = req.body;
+        const user = await User.findById(req.params.id);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Update allowed fields only
-        user.name = req.body.name || user.name;
-        user.email = req.body.email || user.email;
-        if (req.file) {
-            user.avatar = `/uploads/avatars/${req.file.filename}`;
+        user.name = name || user.name;
+        user.email = email || user.email;
+
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
         }
 
-        const updatedUser = await user.save();
+        if (req.file) {
+            const avatar = `/uploads/avatars/${req.file.filename}`;
+            user.avatar = avatar;  // Update the avatar path
+        }
+
+        await user.save();
+
         res.status(200).json({
-            _id: updatedUser._id,
-            name: updatedUser.name,
-            email: updatedUser.email,
-            avatar: updatedUser.avatar,
-            rollNo: updatedUser.rollNo,
-            standard: updatedUser.standard,
-            role: updatedUser.role,
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+            rollNo: user.rollNo,
+            standard: user.standard,
         });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
