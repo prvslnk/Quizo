@@ -1,19 +1,24 @@
 import express from 'express';
-import { submitAttempt, getAttemptsByExamId, getAllAttemptsByUser, getAttemptDetailByUser } from '../controllers/attempt.controller.js';
+import {
+    submitAttempt,
+    getAttemptsByExamId,
+    getAllAttemptsByUser,
+    getAttemptDetailByUser
+} from '../controllers/attempt.controller.js';
 import { protect, adminOnly } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
-// USER: Submit an attempt
+// User: Submit an attempt
 router.post('/submit', protect, submitAttempt);
 
-// ADMIN: Get all attempts for an exam
+// Admin: Get all users who attempted for an exam
 router.get('/exam/:examId', protect, adminOnly, getAttemptsByExamId);
 
-// ADMIN: Get all attempts by a user
+// Admin: Get all Exams attempted by a specific user
 router.get('/user/:userId', protect, adminOnly, getAllAttemptsByUser);
 
-// USER: Get detailed attempt (user+exam)
-router.get('/exam/:examId/user/:userId', protect, getAttemptDetailByUser);
+// User/Admin: Get detailed attempt of a user
+router.get('/user/:userId/exam/:examId', protect, getAttemptDetailByUser);
 
 export default router;

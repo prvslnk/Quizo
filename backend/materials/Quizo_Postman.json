@@ -1,0 +1,1252 @@
+{
+	"info": {
+		"_postman_id": "e49e3022-ae37-424d-ab1e-b3188ddae970",
+		"name": "Quizo",
+		"description": "``` shell\nQuizo/\n├── Auth/\n│   ├── Register User\n│   ├── Login User\n├── Exams/\n│   ├── Create Exam (Admin)\n│   ├── Get All Exams\n│   ├── Get Exam By ID\n│   ├── Update Exam Status (Admin)\n├── Questions/\n│   ├── Add Question (MCQ/MSQ)\n│   ├── Get Questions of Exam\n├── Attempts/\n│   ├── Submit Attempt (User)\n│   ├── Get My Library (User)\n│   ├── Get Attempt Detail\n│   ├── Get Leaderboard of Exam (Public)\n\n ```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35183153"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Pravas 4",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "pravas4@quizo.com",
+									"type": "text"
+								},
+								{
+									"key": "rollNo",
+									"value": "QXII01",
+									"type": "text"
+								},
+								{
+									"key": "standard",
+									"value": "X",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "postman-cloud:///1f0283d3-a6b4-44f0-8f1e-651ec30c82c4",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTMwMzE5MDBlMTEzZjM5YTkzOTNkZiIsImlhdCI6MTc0NjA3NjQ0MiwiZXhwIjoxNzQ4NjY4NDQyfQ.LKVGZmjERqcfUFN2y2_xn8yknpJXwzoi8YCn-e3cbI4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pravas4@quizo.com\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER MOD",
+			"item": [
+				{
+					"name": "Update User by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTcyMzExNWZjOThjYzJjNTUyY2I1OCIsImlhdCI6MTc0NjM3MDM5MiwiZXhwIjoxNzQ4OTYyMzkyfQ.j3qIG_N9YblE6DqqbPMyPRfXBkwaD-grkk_BRRphXJc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Pravash",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "pravas@quizo.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "rollNo",
+									"value": "QXII1",
+									"type": "text"
+								},
+								{
+									"key": "standard",
+									"value": "XI",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "postman-cloud:///1f0264b1-7292-4320-9548-ed35a1a3fe76"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/myprofile/681723115fc98cc2c552cb58",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"myprofile",
+								"681723115fc98cc2c552cb58"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Modification of User Data By User."
+		},
+		{
+			"name": "USER M [Admin]",
+			"item": [
+				{
+					"name": "GET USER",
+					"item": [
+						{
+							"name": "GET User ALL",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token-admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET User by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token-admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/user/profile?id=681723115fc98cc2c552cb58",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "681723115fc98cc2c552cb58"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET USER by Name & Standard.",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token-admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/profile?name=pra&standard=XII",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "pra"
+										},
+										{
+											"key": "standard",
+											"value": "XII"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET User by Standard",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token-admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/user/profile?standard=XII",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "standard",
+											"value": "XII"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT & DEL",
+					"item": [
+						{
+							"name": "Update User by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token-admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Pravas",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "pravas@quizo.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "rollNo",
+											"value": "QXII10",
+											"type": "text"
+										},
+										{
+											"key": "standard",
+											"value": "XII",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "postman-cloud:///1f0264b1-7292-4320-9548-ed35a1a3fe76",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/profile/681723115fc98cc2c552cb58",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"profile",
+										"681723115fc98cc2c552cb58"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DEL USER By ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token-admin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Abhigyan Prushty\",\r\n    \"email\": \"abi@1.com\",\r\n    \"profilePic\": \"/uploads/avatars/1746076441042-538974304.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/profile/681797c5314ad6d3554d0599",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"profile",
+										"681797c5314ad6d3554d0599"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login (Get Token)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@quizo.com\",\n    \"password\": \"admin@123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "`http://localhost:5000/api/user/profile?name=John&standard=XII`\n\n### **Response Example:**\n\n``` json\n    {\n        \"name\": \"Pravas\",\n        \"email\": \"pravas@quizo.com\",\n        \"rollNo\": \"QXII01\",\n        \"standard\": \"XII\",\n        \"password\": \"password\",\n        \"avatar\": \"/uploads/avatars/pic.png\",\n        \"role\": \"user\"\n    }\n\n ```\n\n---"
+		},
+		{
+			"name": "Exams",
+			"item": [
+				{
+					"name": "Create Exam (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Final Term Mathematics Exam\",\r\n  \"description\": \"Final exam for Mathematics\",\r\n  \"examStatus\": \"upcoming\",\r\n  \"startTime\": \"2025-06-15T10:00:00.000Z\",\r\n  \"duration\": 60,\r\n  \"classFilter\": [\"XII\", \"X\"],\r\n  \"subject\": \"Math\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/exams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"exams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Exams (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/exams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"exams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Exam By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-pr2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/exams/681893b25941e6ed559d7840",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"exams",
+								"681893b25941e6ed559d7840"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Exam (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"examStatus\": \"active\",\r\n        \"classFilter\": [\r\n        \"XII\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/exams/681893b25941e6ed559d7840",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"exams",
+								"681893b25941e6ed559d7840"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Exam (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/exams/68189255edecb03e329703f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"exams",
+								"68189255edecb03e329703f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exam Asnd to a specific user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-pr2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/exams/user/681723115fc98cc2c552cb58",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"exams",
+								"user",
+								"681723115fc98cc2c552cb58"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exam Attempted by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/exams/attempts/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"exams",
+								"attempts",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Add Question (MCQ/MSQ)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"questionText\": \"Which of the following are prime numbers?\",\r\n  \"questionType\": \"msq\",\r\n  \"options\": [\r\n    { \"optionText\": \"2\", \"isCorrect\": true },\r\n    { \"optionText\": \"4\", \"isCorrect\": false },\r\n    { \"optionText\": \"7\", \"isCorrect\": true },\r\n    { \"optionText\": \"9\", \"isCorrect\": false }\r\n  ],\r\n  \"correctAnswers\": [\"2\", \"7\"],\r\n  \"mark\": 3\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/questions/681893b25941e6ed559d7840",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"questions",
+								"681893b25941e6ed559d7840"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"questionText\": \"Which of the following are prime numbers?\",\r\n  \"questionImage\": \"http://example.com/image.jpg\",\r\n  \"questionType\": \"msq\",\r\n  \"options\": [\r\n    { \"optionText\": \"2\", \"isCorrect\": true },\r\n    { \"optionText\": \"4\", \"isCorrect\": false },\r\n    { \"optionText\": \"7\", \"isCorrect\": true },\r\n    { \"optionText\": \"9\", \"isCorrect\": false }\r\n  ],\r\n  \"correctAnswers\": [\"2\", \"7\"],\r\n  \"mark\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/questions/68174b8274d3e2cf87342e09",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"questions",
+										"68174b8274d3e2cf87342e09"
+									]
+								}
+							},
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Update Question (MCQ/MSQ)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "questionImage",
+									"type": "file",
+									"src": "postman-cloud:///1f015dc9-f01a-4940-af0f-76db499ed379"
+								},
+								{
+									"key": "mark",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/questions/6818a1e963458f68944193b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"questions",
+								"6818a1e963458f68944193b7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Form Data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "questionType",
+											"value": "mcq",
+											"type": "text"
+										},
+										{
+											"key": "questionImage",
+											"type": "file",
+											"src": "postman-cloud:///1f015dc9-f01a-4940-af0f-76db499ed379"
+										},
+										{
+											"key": "mark",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/questions/68175c3b18dbfaeb64bbe2a4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"questions",
+										"68175c3b18dbfaeb64bbe2a4"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Json  Data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"questionText\": \"Which of the following are prime numbers?\",\r\n  \"questionType\": \"msq\",\r\n  \"options\": [\r\n    { \"optionText\": \"2\", \"isCorrect\": true },\r\n    { \"optionText\": \"40\", \"isCorrect\": false },\r\n    { \"optionText\": \"7\", \"isCorrect\": true },\r\n    { \"optionText\": \"9\", \"isCorrect\": false }\r\n  ],\r\n  \"correctAnswers\": [\"2\", \"7\"],\r\n  \"mark\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/questions/6818a1e963458f68944193b7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"questions",
+										"6818a1e963458f68944193b7"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "questionType",
+									"value": "mcq",
+									"type": "text"
+								},
+								{
+									"key": "questionImage",
+									"type": "file",
+									"src": "postman-cloud:///1f015dc9-f01a-4940-af0f-76db499ed379"
+								},
+								{
+									"key": "mark",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/questions/6818a44d63458f68944193e1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"questions",
+								"6818a44d63458f68944193e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View  Questions by ExamID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-pr2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/questions/exam/681893b25941e6ed559d7840",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"questions",
+								"exam",
+								"681893b25941e6ed559d7840"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View  Q by ExamID Admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/questions/admin/681893b25941e6ed559d7840",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"questions",
+								"admin",
+								"681893b25941e6ed559d7840"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attempts",
+			"item": [
+				{
+					"name": "Submit Attempt",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-pr2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"examId\": \"681893b25941e6ed559d7840\",\r\n  \"timeTaken\": 600,\r\n  \"answers\": [\r\n    {\r\n      \"questionId\": \"6818a4a363458f68944193f5\",\r\n      \"selectedOptions\": [\r\n        \"6818a4a363458f68944193f6\",\r\n        \"6818a4a363458f56777393f8\"\r\n      ],\r\n      \"markedForReview\": true\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/attempts/submit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"attempts",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All User Atmpt (ExamID)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/attempts/exam/681893b25941e6ed559d7840",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"attempts",
+								"exam",
+								"681893b25941e6ed559d7840"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Atmtd by User (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/attempts/user/6817870585b50edad8c99498",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"attempts",
+								"user",
+								"6817870585b50edad8c99498"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detailed Atempt (ExamID, UserID)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-pr2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/attempts/user/6817870585b50edad8c99498/exam/681893b25941e6ed559d7840",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"attempts",
+								"user",
+								"6817870585b50edad8c99498",
+								"exam",
+								"681893b25941e6ed559d7840"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "| Endpoint | Access | Description |\n| --- | --- | --- |\n| `POST /api/attempt` | User | Submit a test attempt |\n| `GET /api/attempt/my` | User | View your own attempts |\n| `GET /api/attempt/exam/:examId` | Admin | View all attempts for a specific exam |\n| `GET /api/attempt/exam/:examId/user/:userId` | Admin | View a specific user's attempt in an exam |\n| `GET /api/attempt/user/:userId` | Admin | View all attempts by a specific user |"
+		}
+	]
+}

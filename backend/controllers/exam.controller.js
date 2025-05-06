@@ -13,18 +13,19 @@ export const createExam = async (req, res) => {
             subject
         } = req.body;
 
-        // Validate input
-        if (!Array.isArray(classFilter) || classFilter.length === 0) {
-            return res.status(400).json({ message: 'classFilter must be a non-empty array' });
-        }
 
-        // Find users where standard matches classFilter
+        // Combine users from classFilter and directly assigned user IDs
         const usersInStandard = await User.find({ standard: { $in: classFilter } }).select('_id');
+        const assignedUserIdsFromClassFilter = usersInStandard.map(user => user._id);
 
-        const assignedUserIds = usersInStandard.map(user => user._id);
+        // Include directly assigned user IDs from the request body
+        const assignedUserIdsFromRequest = req.body.assignedto || [];
+
+        // Merge and remove duplicates
+        const assignedUserIds = [...new Set([...assignedUserIdsFromClassFilter, ...assignedUserIdsFromRequest])];
 
         if (assignedUserIds.length === 0) {
-            return res.status(400).json({ message: 'No users found in the selected standard(s).' });
+            return res.status(400).json({ message: 'No users found in the selected standard(s) or assignedto.' });
         }
 
         // Create new exam
@@ -51,7 +52,10 @@ export const createExam = async (req, res) => {
 // Get all exams (admin)
 export const getAllExams = async (req, res) => {
     try {
-        const exams = await Exam.find().populate('assignedto', 'name email');
+        const exams = await Exam.find()
+            .populate('assignedto', 'name email')
+            .populate('attendees.userId', 'name')
+            .exec();  // Execute the query
         res.status(200).json(exams);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -61,13 +65,21 @@ export const getAllExams = async (req, res) => {
 // Get a single exam by ID
 export const getExamById = async (req, res) => {
     try {
-        const exam = await Exam.findById(req.params.id).populate('assignedto', 'name email');
-        if (!exam) return res.status(404).json({ message: 'Exam not found' });
+        const exam = await Exam.findById(req.params.id)
+            .populate('assignedto', 'name email')
+            .populate('attendees.userId', 'name')
+            .exec();
+
+        if (!exam) {
+            return res.status(404).json({ message: 'Exam not found' });
+        }
+
         res.status(200).json(exam);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 // Update exam by ID
 export const updateExamById = async (req, res) => {
