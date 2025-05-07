@@ -5,6 +5,7 @@
 ### Login
 
 **POST** `/api/auth/login`
+
 Authenticates a user.
 
 **Request Body**
@@ -36,6 +37,7 @@ Authenticates a user.
 ### Register
 
 **POST** `/api/auth/register`
+
 Registers a new user.
 
 **Request Body (Form-Data)**
@@ -106,6 +108,7 @@ avatar: <image file>
 ### Get All Users (By Admin)
 
 **GET** `/api/user/profile`
+
 Fetches all users.
 
 **Headers**
@@ -134,6 +137,7 @@ Authorization: Bearer <token>
 ### Get User by ID (By Admin)
 
 **GET** `/api/user/profile?id=USER_ID`
+
 Fetches a user by their unique ID.
 
 **Headers**
@@ -161,6 +165,7 @@ Authorization: Bearer <token>
 ### Get Users by Name and Standard (By Admin)
 
 **GET** `/api/user/profile?name=NAME_QUERY&standard=STANDARD`
+
 Fetches users whose names match the query and belong to a specific standard.
 
 **Headers**
@@ -199,6 +204,7 @@ Authorization: Bearer <token>
 ### Get Users by Standard (By Admin)
 
 **GET** `/api/user/profile?standard=STANDARD`
+
 Fetches all users from a specific standard.
 
 **Headers**
