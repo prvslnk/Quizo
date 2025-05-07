@@ -66,6 +66,33 @@ avatar: <image file>
 }
 ```
 
+### Profile Details
+
+**GET** `/api/auth/profile`
+
+Authenticates a user.
+
+**Request Body**
+
+```
+Authorization: Bearer <token>
+```
+
+**Response**
+
+```json
+{
+    "_id": "6810aa1581d70bbd6a348f8f",
+    "name": "admin",
+    "email": "admin@quizo.com",
+    "role": "admin",
+    "createdAt": "2025-04-29T10:29:41.079Z",
+    "updatedAt": "2025-04-29T10:29:41.079Z",
+    "__v": 0,
+    "avatar": "/uploads/avatars/user.png"
+}
+```
+
 ### Update User Profile (By User)
 
 **PUT** `/api/user/myprofile/:id`
