@@ -14,13 +14,15 @@ connectDB();
 
 const app = express();
 
-// Middleware
+// Add this line to parse JSON bodies
+app.use(express.json());
+
+// CORS setup
 app.use(cors({
-    origin: '*',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
-app.use(express.json());
 
 // Static folder for uploads
 const __dirnamePath = path.resolve();

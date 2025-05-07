@@ -3,8 +3,8 @@
 This is the backend for the Quizo application.
 
 ### API End Points:
-API Docs: [Click Here](./materials/api_docs.md)   
-POSTMAN Json: [Postman Collection](./materials/Quizo.postman_collection.json)
+API Docs: [Click Here](../materials/api_docs.md)   
+POSTMAN Json: [Postman Collection](../materials/Quizo.postman_collection.json)
 
 ### Model Link: 
 []()
@@ -68,4 +68,13 @@ npm install
 
 ```shell
   npm install cors
+```
+
+```js
+  app.use(cors({
+      origin: '*',
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      credentials: true
+  }));
+  app.use(express.json());
 ```
