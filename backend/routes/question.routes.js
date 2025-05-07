@@ -18,13 +18,12 @@ router.post('/:examId', protect, adminOnly, uploadQuestionImage.single('question
 router.get('/admin/:examId', protect, adminOnly, getQuestionsByExamId);
 
 // Admin: Modify question
-router.put('/:questionId', protect, adminOnly, modifyQuestionById);
+router.put('/:questionId', protect, adminOnly, uploadQuestionImage.single('questionImage'), modifyQuestionById);
 
 // Admin: Delete question
 router.delete('/:questionId', protect, adminOnly, deleteQuestionById);
 
 // Get questions by exam ID user who ARE ASSIGNED to the exam
-// (i.e. not admin for the user who is assigned to the exam)
 router.get('/exam/:examId', protect, getQuestionsofExam);
 
 export default router;

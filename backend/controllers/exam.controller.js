@@ -144,16 +144,6 @@ export const deleteExamById = async (req, res) => {
     }
 };
 
-// Get exams assigned to a user
-export const getExamsByUserId = async (req, res) => {
-    try {
-        const exams = await Exam.find({ assignedto: req.params.userId });
-        res.status(200).json(exams);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
-
 // Get exams attempted by a user
 export const getExamsAttemptedByUserId = async (req, res) => {
     try {

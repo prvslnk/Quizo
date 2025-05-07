@@ -42,13 +42,35 @@ export const getQuestionsByExamId = async (req, res) => {
 // Modify a question by its ID (Admin view)
 export const modifyQuestionById = async (req, res) => {
     try {
-        const updated = await Question.findByIdAndUpdate(req.params.questionId, req.body, { new: true });
-        if (!updated) return res.status(404).json({ message: 'Question not found' });
+
+        const updatedData = {
+            ...req.body,
+            options: req.body.options ? JSON.parse(req.body.options) : undefined,
+        };
+
+        if (req.file) {
+            updatedData.questionImage = `/uploads/exam/questions/${req.file.filename}`;
+        }
+
+        // Update the question
+        const updated = await Question.findByIdAndUpdate(
+            req.params.questionId,
+            updatedData,
+            { new: true, runValidators: true }
+        );
+
+        if (!updated) {
+            return res.status(404).json({ message: 'Question not found' });
+        }
+
         res.status(200).json(updated);
     } catch (err) {
+        console.error('Error updating question:', err);
         res.status(400).json({ message: err.message });
     }
 };
+
+
 
 // Delete a question by its ID (Admin view)
 export const deleteQuestionById = async (req, res) => {

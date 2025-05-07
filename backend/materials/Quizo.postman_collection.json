@@ -25,22 +25,22 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Pravas 4",
+									"value": "Pravas",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "pravas4@quizo.com",
+									"value": "pravas5@quizo.com",
 									"type": "text"
 								},
 								{
 									"key": "rollNo",
-									"value": "QXII01",
+									"value": "QXII30",
 									"type": "text"
 								},
 								{
 									"key": "standard",
-									"value": "X",
+									"value": "XI",
 									"type": "text"
 								},
 								{
@@ -94,7 +94,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"pravas4@quizo.com\",\n    \"password\": \"123\"\n}"
+							"raw": "{\n    \"email\": \"pravas5@quizo.com\",\n    \"password\": \"123\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/auth/login",
@@ -589,7 +589,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Exam By ID",
+					"name": "Get Exam By ID (U+A)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -636,7 +636,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"examStatus\": \"active\",\r\n        \"classFilter\": [\r\n        \"XII\"\r\n    ]\r\n}",
+							"raw": "{\r\n  \"examStatus\": \"active\",\r\n        \"classFilter\": [\r\n        \"XII\",\r\n        \"X\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -691,14 +691,14 @@
 					"response": []
 				},
 				{
-					"name": "Exam Asnd to a specific user",
+					"name": "Exam Attempted by User",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token-pr2}}",
+									"value": "{{token-pr4}}",
 									"type": "string"
 								}
 							]
@@ -706,29 +706,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/exams/user/681723115fc98cc2c552cb58",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"exams",
-								"user",
-								"681723115fc98cc2c552cb58"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Exam Attempted by User",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/api/exams/attempts/:userId",
+							"raw": "http://localhost:5000/api/exams/attempts/6817870585b50edad8c99498",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -738,13 +716,7 @@
 								"api",
 								"exams",
 								"attempts",
-								":userId"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": ""
-								}
+								"6817870585b50edad8c99498"
 							]
 						}
 					},
@@ -858,7 +830,7 @@
 								},
 								{
 									"key": "mark",
-									"value": "2",
+									"value": "5",
 									"type": "text"
 								}
 							]
@@ -1219,7 +1191,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token-pr2}}",
+									"value": "{{token-admin}}",
 									"type": "string"
 								}
 							]

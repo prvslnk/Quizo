@@ -2,11 +2,20 @@
 
 This is the backend for the Quizo application.
 
+### API End Points:
+API Docs: [Click Here](./materials/api_docs.md)   
+POSTMAN Json: [Postman Collection](./materials/Quizo.postman_collection.json)
+
+### Model Link: 
+[]()
+
 ## Setup Instructions
 
-1. Install dependencies:
-   ```sh
-   npm install
+1. Install dependencies:  
+
+```sh
+npm install
+```
 
 2. Create a .env file with the following content:
 
@@ -33,10 +42,6 @@ This is the backend for the Quizo application.
 * Question management with image upload
 * Exam attempts and scoring
 
-### API End Points:
-POSTMAN Json: []()
-
-### Model Link: []()
 
 ### Notes
 ```shell

@@ -5,7 +5,6 @@ import {
     getExamById,
     updateExamById,
     deleteExamById,
-    getExamsByUserId,
     getExamsAttemptedByUserId
 } from '../controllers/exam.controller.js';
 import { protect, adminOnly } from '../middlewares/auth.middleware.js';
@@ -26,9 +25,6 @@ router.put('/:id', protect, adminOnly, updateExamById);
 
 // Admin: Delete an exam
 router.delete('/:id', protect, adminOnly, deleteExamById);
-
-// User: Get Exams assigned to a user
-router.get('/user/:userId', protect, getExamsByUserId);
 
 // User: Get Exams attempted by a user
 router.get('/attempts/:userId', protect, getExamsAttemptedByUserId);
